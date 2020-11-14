@@ -49,16 +49,17 @@ namespace SimpleComputer
         {
             Console.WindowHeight = Math.Max(Memory.Length + Program.Length + Output.Count + 12, Console.WindowHeight);
             Console.Clear();
+
             Console.WriteLine("Code:");
             PrintProgram();
-            Console.WriteLine();
-            Console.WriteLine("Memory:");
+
+            Console.WriteLine("\nMemory:");
             PrintMemory();
-            Console.WriteLine();
-            Console.WriteLine("Output:");
+
+            Console.WriteLine("\nOutput:");
             PrintOutput();
-            Console.WriteLine();
-            Console.Write("Input: ");
+
+            Console.Write("\nInput: ");
         }
 
         protected virtual void Init()
