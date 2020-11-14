@@ -1,0 +1,54 @@
+﻿IN 0
+IN 1
+
+# Exit if 1 is Zero
+0 1
+JS 10
+JS 100
+
+# Beginning of loop 1: Dec 0
+SEC 10
+0 0
+JS 11
+JS 100
+SEC 11
+- 0
+
+# Move 1 to 3 while inc 2
+SEC 12
+- 1
++ 2
++ 3
+0 1
+JS 12
+JS 20
+
+# Beginning of loop 2: Dec 0
+SEC 20
+0 0
+JS 21
+JS 100
+SEC 21
+- 0
+
+# Move 3 to 1 while inc 2
+SEC 22
+- 3
++ 2
++ 1
+0 3
+JS 22
+JS 10
+
+
+# Output
+SEC 100
+OUT 2
+X
+
+#&
+
+6
+2
+0
+0

@@ -1,0 +1,19 @@
+﻿IN 0
+IN 1
+SEC 1
+0 0
+JS 0
+JS 2
+SEC 0
+- 0
++ 1
+JS 1
+SEC 2
+OUT 0
+OUT 1
+X
+
+#&
+
+0
+0
