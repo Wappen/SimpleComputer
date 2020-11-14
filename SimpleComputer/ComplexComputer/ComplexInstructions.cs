@@ -30,7 +30,7 @@ namespace SimpleComputer.ComplexComputer
 
         public override bool Execute()
         {
-            Console.WriteLine($"O: {processor.Memory[Parameter]}");
+            processor.Output.Add($"O: {processor.Memory[Parameter]}");
             processor.ProgramCounter++;
             return true;
         }

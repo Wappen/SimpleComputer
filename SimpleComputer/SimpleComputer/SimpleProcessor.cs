@@ -14,7 +14,7 @@ namespace SimpleComputer.SimpleComputer
             { "X", typeof(ExitInstruction) }
         };
 
-        public override void PrintProgram()
+        protected override void PrintProgram()
         {
             for (int i = 0; i < Program.Length; i++)
             {
@@ -27,7 +27,7 @@ namespace SimpleComputer.SimpleComputer
             }
         }
 
-        public override void PrintMemory()
+        protected override void PrintMemory()
         {
             for (int i = 0; i < Memory.Length; i++)
             {
@@ -35,6 +35,14 @@ namespace SimpleComputer.SimpleComputer
                 Console.CursorLeft = 5;
                 Console.Write($"| {Memory[i]}");
                 Console.WriteLine();
+            }
+        }
+
+        protected override void PrintOutput()
+        {
+            foreach (var line in Output)
+            {
+                Console.WriteLine(line);
             }
         }
     }

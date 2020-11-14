@@ -1,6 +1,7 @@
 ﻿using SimpleComputer.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace SimpleComputer
 {
@@ -8,6 +9,7 @@ namespace SimpleComputer
     {
         public abstract Dictionary<string, Type> Instructions { get; }
 
+        public List<string> Output { get; } = new List<string>();
         public int[] Memory { get; set; }
         public Instruction[] Program { get; set; }
         public int ProgramCounter { get; set; }
@@ -26,10 +28,7 @@ namespace SimpleComputer
                 // Skip halting and printing, when skip var is bigger than 1 or haltInst is not same as instruction
                 if (skip-- <= 0 && (haltInst == null || haltInst == Program[ProgramCounter].GetType()))
                 {
-                    Console.Clear();
-                    PrintProgram();
-                    Console.WriteLine();
-                    PrintMemory();
+                    Display();
 
                     // Parse the input to either skip given number of lines or to set instType
                     string input = Console.ReadLine().ToUpper();
@@ -42,13 +41,28 @@ namespace SimpleComputer
                 run = Clock();
             }
             while (run);
+
+            Display();
+        }
+
+        private void Display()
+        {
+            Console.WindowHeight = Math.Max(Memory.Length + Program.Length + Output.Count + 12, Console.WindowHeight);
+            Console.Clear();
+            Console.WriteLine("Code:");
+            PrintProgram();
+            Console.WriteLine();
+            Console.WriteLine("Memory:");
+            PrintMemory();
+            Console.WriteLine();
+            Console.WriteLine("Output:");
+            PrintOutput();
+            Console.WriteLine();
+            Console.Write("Input: ");
         }
 
         protected virtual void Init()
         {
-            Console.Clear();
-            Console.WindowHeight = Math.Max(Memory.Length + Program.Length + 10, Console.WindowHeight);
-
             for (int i = 0; i < Program.Length; i++)
             {
                 Program[i].Init(this, i);
@@ -72,8 +86,10 @@ namespace SimpleComputer
             }
         }
 
-        public abstract void PrintProgram();
+        protected abstract void PrintProgram();
 
-        public abstract void PrintMemory();
+        protected abstract void PrintMemory();
+
+        protected abstract void PrintOutput();
     }
 }
