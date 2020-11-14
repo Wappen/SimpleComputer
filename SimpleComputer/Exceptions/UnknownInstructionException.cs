@@ -2,6 +2,9 @@
 
 namespace SimpleComputer.Exceptions
 {
+    /// <summary>
+    /// Thrown when an instruction is unknown.
+    /// </summary>
     class UnknownInstructionException : Exception
     {
         public UnknownInstructionException(string message) : base(message)

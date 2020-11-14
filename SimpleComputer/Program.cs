@@ -45,10 +45,15 @@ namespace SimpleComputer
 
             Console.WriteLine("Running program...");
             processor.Run();
-            Console.WriteLine("Program exited.");
-            Thread.Sleep(1000);
+            Console.WriteLine("Program exited. Press any key to exit...");
+            Console.ReadKey();
         }
 
+        /// <summary>
+        /// Returns the full filename with extension with only the path+name given
+        /// </summary>
+        /// <param name="name">The path+name without extension</param>
+        /// <returns>Full Filepath</returns>
         private static string GetFileByName(string name)
         {
             string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(), $"{name}.*");

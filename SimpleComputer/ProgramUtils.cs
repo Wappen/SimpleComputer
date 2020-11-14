@@ -8,6 +8,11 @@ namespace SimpleComputer
     {
         public const string PartSeperator = "#&";
 
+        /// <summary>
+        /// Loads the raw program text into the given processor.
+        /// </summary>
+        /// <param name="text">The program code without any changes.</param>
+        /// <param name="processor">The processor into which the program shall be loaded.</param>
         public static void LoadProgram(string text, IProcessor processor)
         {
             string[] parts = text.Split(PartSeperator);
@@ -15,8 +20,8 @@ namespace SimpleComputer
             if (parts.Length != 2)
                 throw new ProgramException($"Memory part not seperated from program part. Make sure there is only one '{PartSeperator}' seperator existent in your program.");
 
-            string[] proLines = PrepLines(parts[0].Split('\n'));
-            string[] memLines = PrepLines(parts[1].Split('\n'));
+            string[] proLines = CleanUp(parts[0].Split('\n'));
+            string[] memLines = CleanUp(parts[1].Split('\n'));
             Console.WriteLine("Parsing program part...");
             Instruction[] program = ParseProgram(proLines, processor.Instructions);
             Console.WriteLine("Parsing memory part...");
@@ -26,9 +31,14 @@ namespace SimpleComputer
             processor.Memory = memory;
         }
 
-        private static string[] PrepLines(string[] lines)
+        /// <summary>
+        /// Prepares and cleans the given program lines for parsing.
+        /// </summary>
+        /// <param name="lines">The raw program/memory lines splitted on new line</param>
+        /// <returns>Returns program/memory lines without comments and unnecessary white spaces.</returns>
+        private static string[] CleanUp(string[] lines)
         {
-            List<string> preppedLines = new List<string>();
+            List<string> cleanLines = new List<string>();
 
             for (int i = 0; i < lines.Length; i++)
             {
@@ -39,12 +49,18 @@ namespace SimpleComputer
                     || lines[i].StartsWith('#'))
                     continue;
 
-                preppedLines.Add(lines[i]);
+                cleanLines.Add(lines[i]);
             }
 
-            return preppedLines.ToArray();
+            return cleanLines.ToArray();
         }
 
+        /// <summary>
+        /// Parses the given program lines to an array of instructions.
+        /// </summary>
+        /// <param name="lines">Prepared program code lines.</param>
+        /// <param name="instructionTypes">List of valid instructions the processor accepts.</param>
+        /// <returns>Returns a list of instructions ready to be executed.</returns>
         public static Instruction[] ParseProgram(string[] lines, Dictionary<string, Type> instructionTypes)
         {
             var instructions = new Instruction[lines.Length];
@@ -83,6 +99,11 @@ namespace SimpleComputer
             return instructions;
         }
 
+        /// <summary>
+        /// Parses the given memory lines to an array of memory cells with values.
+        /// </summary>
+        /// <param name="lines">The memory values and cells.</param>
+        /// <returns>Returns an array of memory values.</returns>
         public static int[] ParseMemory(string[] lines)
         {
             int[] memory = new int[lines.Length];

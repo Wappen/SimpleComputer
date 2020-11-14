@@ -29,7 +29,7 @@ namespace SimpleComputer
                 if (skip-- <= 0 && (haltInst == null || haltInst == Program[ProgramCounter].GetType()))
                 {
                     Display();
-
+                    
                     // Parse the input to either skip given number of lines or to set instType
                     string input = Console.ReadLine().ToUpper();
                     if (Instructions.ContainsKey(input))
@@ -69,6 +69,10 @@ namespace SimpleComputer
             }
         }
 
+        /// <summary>
+        /// Executes a clock cycle by executing the current instruction.
+        /// </summary>
+        /// <returns>Returns a boolean indicating whether the program should continue or not.</returns>
         protected virtual bool Clock()
         {
             try

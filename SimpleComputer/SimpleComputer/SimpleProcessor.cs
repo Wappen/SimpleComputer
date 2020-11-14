@@ -19,10 +19,10 @@ namespace SimpleComputer.SimpleComputer
             for (int i = 0; i < Program.Length; i++)
             {
                 Console.Write($"{i}");
-                Console.CursorLeft = 3;
-                char lc = (ProgramCounter == i) ? '>' : ' ';
+                Console.CursorLeft = 4;
+                char lc = (ProgramCounter == i) ? '>' : '|';
                 char rc = (ProgramCounter == i) ? '<' : ' ';
-                Console.Write($"{lc} | {Program[i]} {rc}");
+                Console.Write($"{lc} {Program[i]} {rc}");
                 Console.WriteLine();
             }
         }
@@ -32,7 +32,7 @@ namespace SimpleComputer.SimpleComputer
             for (int i = 0; i < Memory.Length; i++)
             {
                 Console.Write($"{i}");
-                Console.CursorLeft = 5;
+                Console.CursorLeft = 4;
                 Console.Write($"| {Memory[i]}");
                 Console.WriteLine();
             }
