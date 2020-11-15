@@ -1,8 +1,12 @@
 ﻿using SimpleComputer.ComplexComputer;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading;
-using static SimpleComputer.ProgramUtils;
+using static SimpleComputer.Utils;
 
 namespace SimpleComputer
 {
@@ -11,7 +15,6 @@ namespace SimpleComputer
         static void Main(string[] args)
         {
             Console.Title = "SimpleComputer";
-
             IProcessor processor = new ComplexProcessor();
             string path;
 
@@ -21,8 +24,19 @@ namespace SimpleComputer
             }
             else if (args.Length == 0)
             {
-                Console.Write("Program path: ");
-                string input = Console.ReadLine();
+                List<string> files = new List<string>(Directory.GetFiles(@".\", "*.txt"));
+                files.AddRange(Directory.GetFiles(@".\Programs\", "*.txt"));
+
+                List<string> fileNames = new List<string>();
+                files.ForEach(f =>
+                {
+                    string name = Path.GetFileNameWithoutExtension(f);
+                    fileNames.Add(name);
+                    Console.WriteLine(name);
+                });
+
+                ReadLine.AutoCompletionHandler = new ProgramAutoCompletionHandler(fileNames.ToArray());
+                string input = ReadLine.Read("\nProgram path: ");
 
                 if (File.Exists(input))
                     path = input;
@@ -34,6 +48,8 @@ namespace SimpleComputer
                     path = GetFileByName($@".\Programs\{input}");
                 else
                     throw new FileNotFoundException();
+
+                ReadLine.AutoCompletionHandler = default;
             }
             else
             {
@@ -41,6 +57,7 @@ namespace SimpleComputer
             }
 
             Console.WriteLine($"Reading file '{Path.GetRelativePath(Directory.GetCurrentDirectory(), path)}'...");
+            Console.Title = $"SimpleComputer - {Path.GetFileNameWithoutExtension(path)}";
             LoadProgram(File.ReadAllText(path), processor);
 
             Console.WriteLine("Running program...");

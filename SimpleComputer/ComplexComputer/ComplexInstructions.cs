@@ -2,7 +2,7 @@
 
 namespace SimpleComputer.ComplexComputer
 {
-    [Instruction("IN")]
+    [Name("IN")]
     class InInstruction : Instruction
     {
         public InInstruction(int parameter) : base(parameter) { }
@@ -23,7 +23,7 @@ namespace SimpleComputer.ComplexComputer
         }
     }
 
-    [Instruction("OUT")]
+    [Name("OUT")]
     class OutInstruction : Instruction
     {
         public OutInstruction(int parameter) : base(parameter) { }
@@ -36,7 +36,7 @@ namespace SimpleComputer.ComplexComputer
         }
     }
 
-    [Instruction("SEC")]
+    [Name("SEC")]
     class SectionInstruction : Instruction
     {
         public SectionInstruction(int parameter) : base(parameter) { }
@@ -59,7 +59,7 @@ namespace SimpleComputer.ComplexComputer
         }
     }
 
-    [Instruction("JS")]
+    [Name("JS")]
     class JumpSectionInstruction : Instruction
     {
         public JumpSectionInstruction(int parameter) : base(parameter) { }

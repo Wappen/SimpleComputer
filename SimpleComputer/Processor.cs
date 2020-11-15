@@ -7,12 +7,12 @@ namespace SimpleComputer
 {
     abstract class Processor : IProcessor
     {
-        public abstract Dictionary<string, Type> Instructions { get; }
-
         public List<string> Output { get; } = new List<string>();
         public int[] Memory { get; set; }
         public Instruction[] Program { get; set; }
         public int ProgramCounter { get; set; }
+
+        private Dictionary<string, Type> _instTypes;
 
         public void Run()
         {
@@ -32,8 +32,9 @@ namespace SimpleComputer
                     
                     // Parse the input to either skip given number of lines or to set instType
                     string input = Console.ReadLine().ToUpper();
-                    if (Instructions.ContainsKey(input))
-                        haltInst = (haltInst == Instructions[input]) ? null : Instructions[input];
+
+                    if (_instTypes.ContainsKey(input))
+                        haltInst = (haltInst == _instTypes[input]) ? null : _instTypes[input];
                     else
                         int.TryParse(input, out skip);
                 }
@@ -64,6 +65,8 @@ namespace SimpleComputer
 
         protected virtual void Init()
         {
+            _instTypes = this.GetInstructionMap();
+
             for (int i = 0; i < Program.Length; i++)
             {
                 Program[i].Init(this, i);

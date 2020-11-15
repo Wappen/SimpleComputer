@@ -3,17 +3,13 @@ using System.Collections.Generic;
 
 namespace SimpleComputer.SimpleComputer
 {
+    [Instruction(typeof(IncInstruction))]
+    [Instruction(typeof(DecInstruction))]
+    [Instruction(typeof(TestInstruction))]
+    [Instruction(typeof(JumpInstruction))]
+    [Instruction(typeof(ExitInstruction))]
     class SimpleProcessor : Processor
     {
-        public override Dictionary<string, Type> Instructions => new Dictionary<string, Type>
-        {
-            { "+", typeof(IncInstruction) },
-            { "-", typeof(DecInstruction) },
-            { "0", typeof(TestInstruction) },
-            { "J", typeof(JumpInstruction) },
-            { "X", typeof(ExitInstruction) }
-        };
-
         protected override void PrintProgram()
         {
             for (int i = 0; i < Program.Length; i++)

@@ -1,32 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace SimpleComputer
 {
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     class InstructionAttribute : Attribute
     {
         public string Name { get; }
+        public Type InstructionType { get; }
 
-        public InstructionAttribute(string name)
+        public InstructionAttribute(Type instructionType)
         {
-            Name = name;
-        }
-    }
-
-    static class TypeExtensions
-    {
-        public static string GetName(this Type type)
-        {
-            object[] attributes = type.GetCustomAttributes(true);
-
-            foreach (object attribute in attributes)
-            {
-                InstructionAttribute instructionAttribute = attribute as InstructionAttribute;
-
-                if (instructionAttribute != null)
-                    return instructionAttribute.Name;
-            }
-
-            return "";
+            InstructionType = instructionType;
+            Name = instructionType.GetName();
         }
     }
 }

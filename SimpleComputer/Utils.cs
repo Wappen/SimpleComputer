@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SimpleComputer
 {
-    static class ProgramUtils
+    static class Utils
     {
         public const string PartSeperator = "#&";
 
@@ -23,7 +23,7 @@ namespace SimpleComputer
             string[] proLines = CleanUp(parts[0].Split('\n'));
             string[] memLines = CleanUp(parts[1].Split('\n'));
             Console.WriteLine("Parsing program part...");
-            Instruction[] program = ParseProgram(proLines, processor.Instructions);
+            Instruction[] program = ParseProgram(proLines, processor);
             Console.WriteLine("Parsing memory part...");
             int[] memory = ParseMemory(memLines);
 
@@ -59,10 +59,11 @@ namespace SimpleComputer
         /// Parses the given program lines to an array of instructions.
         /// </summary>
         /// <param name="lines">Prepared program code lines.</param>
-        /// <param name="instructionTypes">List of valid instructions the processor accepts.</param>
+        /// <param name="processor">Processor for which the program shall be parsed.</param>
         /// <returns>Returns a list of instructions ready to be executed.</returns>
-        public static Instruction[] ParseProgram(string[] lines, Dictionary<string, Type> instructionTypes)
+        public static Instruction[] ParseProgram(string[] lines, IProcessor processor)
         {
+            Dictionary<string, Type> instTypes = processor.GetInstructionMap();
             var instructions = new Instruction[lines.Length];
 
             for (int i = 0; i < lines.Length; i++)
@@ -70,7 +71,7 @@ namespace SimpleComputer
                 try
                 {
                     string[] parts = lines[i].Split(' ');
-                    Type instType = instructionTypes[parts[0]];
+                    Type instType = instTypes[parts[0]];
 
                     if (parts.Length == 2)
                     {
@@ -121,6 +122,43 @@ namespace SimpleComputer
             }
 
             return memory;
+        }
+
+        /// <summary>
+        /// Returns a map of instruction types the processor accepts.
+        /// </summary>
+        /// <param name="processor">The specific processor.</param>
+        /// <returns>Returns a Dictionary in which the keys are the instruction names and the values are the instruction types.</returns>
+        public static Dictionary<string, Type> GetInstructionMap(this IProcessor processor)
+        {
+            var instTypes = new Dictionary<string, Type>();
+
+            object[] attributes = processor.GetType().GetCustomAttributes(true);
+
+            foreach (object attribute in attributes)
+            {
+                InstructionAttribute instAttribute = attribute as InstructionAttribute;
+
+                if (instAttribute != null)
+                    instTypes.Add(instAttribute.Name, instAttribute.InstructionType);
+            }
+
+            return instTypes;
+        }
+
+        public static string GetName(this Type type)
+        {
+            object[] attributes = type.GetCustomAttributes(true);
+
+            foreach (object attribute in attributes)
+            {
+                NameAttribute nameAttribute = attribute as NameAttribute;
+
+                if (nameAttribute != null)
+                    return nameAttribute.Name;
+            }
+
+            return "";
         }
     }
 }
