@@ -1,7 +1,6 @@
 ﻿using SimpleComputer.Exceptions;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SimpleComputer.Processors
 {
@@ -29,7 +28,7 @@ namespace SimpleComputer.Processors
                 if (skip-- <= 0 && (haltInst == null || haltInst == Program[ProgramCounter].GetType()))
                 {
                     Display();
-                    
+
                     // Parse the input to either skip given number of lines or to set instType
                     string input = Console.ReadLine().ToUpper();
 
