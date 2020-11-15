@@ -61,7 +61,7 @@ namespace SimpleComputer
         /// <param name="lines">Prepared program code lines.</param>
         /// <param name="processor">Processor for which the program shall be parsed.</param>
         /// <returns>Returns a list of instructions ready to be executed.</returns>
-        public static Instruction[] ParseProgram(string[] lines, IProcessor processor)
+        private static Instruction[] ParseProgram(string[] lines, IProcessor processor)
         {
             Dictionary<string, Type> instTypes = processor.GetInstructionMap();
             var instructions = new Instruction[lines.Length];
@@ -105,7 +105,7 @@ namespace SimpleComputer
         /// </summary>
         /// <param name="lines">The memory values and cells.</param>
         /// <returns>Returns an array of memory values.</returns>
-        public static int[] ParseMemory(string[] lines)
+        private static int[] ParseMemory(string[] lines)
         {
             int[] memory = new int[lines.Length];
 

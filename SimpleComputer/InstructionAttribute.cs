@@ -5,7 +5,7 @@ using System.Text;
 namespace SimpleComputer
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
-    class InstructionAttribute : Attribute
+    public class InstructionAttribute : Attribute
     {
         public string Name { get; }
         public Type InstructionType { get; }

@@ -3,7 +3,7 @@
 namespace SimpleComputer
 {
     [AttributeUsage(AttributeTargets.Class)]
-    class NameAttribute : Attribute
+    public class NameAttribute : Attribute
     {
         public string Name { get; }
 

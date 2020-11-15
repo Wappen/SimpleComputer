@@ -8,7 +8,7 @@ namespace SimpleComputer.ComplexComputer
     [Instruction(typeof(OutInstruction))]
     [Instruction(typeof(SectionInstruction))]
     [Instruction(typeof(JumpSectionInstruction))]
-    class ComplexProcessor : SimpleProcessor
+    public class ComplexProcessor : SimpleProcessor
     {
         public Dictionary<int, int> Sections { get; set; } = new Dictionary<int, int>();
     }

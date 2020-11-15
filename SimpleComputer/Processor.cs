@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SimpleComputer
 {
-    abstract class Processor : IProcessor
+    public abstract class Processor : IProcessor
     {
         public List<string> Output { get; } = new List<string>();
         public int[] Memory { get; set; }

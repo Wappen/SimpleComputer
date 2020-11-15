@@ -8,7 +8,7 @@ namespace SimpleComputer.SimpleComputer
     [Instruction(typeof(TestInstruction))]
     [Instruction(typeof(JumpInstruction))]
     [Instruction(typeof(ExitInstruction))]
-    class SimpleProcessor : Processor
+    public class SimpleProcessor : Processor
     {
         protected override void PrintProgram()
         {

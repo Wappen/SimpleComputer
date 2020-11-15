@@ -1,7 +1,7 @@
 ﻿namespace SimpleComputer.SimpleComputer
 {
     [Name("+")]
-    class IncInstruction : Instruction
+    public class IncInstruction : Instruction
     {
         public IncInstruction(int parameter) : base(parameter) { }
 
@@ -14,7 +14,7 @@
     }
 
     [Name("-")]
-    class DecInstruction : Instruction
+    public class DecInstruction : Instruction
     {
         public DecInstruction(int parameter) : base(parameter) { }
 
@@ -27,7 +27,7 @@
     }
 
     [Name("0")]
-    class TestInstruction : Instruction
+    public class TestInstruction : Instruction
     {
         public TestInstruction(int parameter) : base(parameter) { }
 
@@ -40,7 +40,7 @@
     }
 
     [Name("J")]
-    class JumpInstruction : Instruction
+    public class JumpInstruction : Instruction
     {
         public JumpInstruction(int parameter) : base(parameter) { }
 
@@ -52,7 +52,7 @@
     }
 
     [Name("X")]
-    class ExitInstruction : Instruction
+    public class ExitInstruction : Instruction
     {
         public ExitInstruction() : base(0) { }
 

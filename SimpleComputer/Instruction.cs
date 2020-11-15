@@ -1,6 +1,6 @@
 ﻿namespace SimpleComputer
 {
-    abstract class Instruction
+    public abstract class Instruction
     {
         public readonly int Parameter;
 

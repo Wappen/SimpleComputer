@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SimpleComputer
 {
-    interface IProcessor
+    public interface IProcessor
     {
         List<string> Output { get; }
         int[] Memory { get; set; }
