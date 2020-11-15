@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SimpleComputer
+namespace SimpleComputer.Processors
 {
     public interface IProcessor
     {

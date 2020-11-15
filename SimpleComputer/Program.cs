@@ -1,4 +1,4 @@
-﻿using SimpleComputer.ComplexComputer;
+﻿using SimpleComputer.Processors;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

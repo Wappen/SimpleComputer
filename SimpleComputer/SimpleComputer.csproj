@@ -27,4 +27,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ComplexComputer\" />
+    <Folder Include="SimpleComputer\" />
+  </ItemGroup>
+
 </Project>

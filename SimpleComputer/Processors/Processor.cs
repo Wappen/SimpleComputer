@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleComputer
+namespace SimpleComputer.Processors
 {
     public abstract class Processor : IProcessor
     {

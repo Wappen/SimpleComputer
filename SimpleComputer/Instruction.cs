@@ -1,4 +1,6 @@
-﻿namespace SimpleComputer
+﻿using SimpleComputer.Processors;
+
+namespace SimpleComputer
 {
     public abstract class Instruction
     {

@@ -1,6 +1,7 @@
 ﻿using SimpleComputer.Exceptions;
 using System;
 using System.Collections.Generic;
+using SimpleComputer.Processors;
 
 namespace SimpleComputer
 {
