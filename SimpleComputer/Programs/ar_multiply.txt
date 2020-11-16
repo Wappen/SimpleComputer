@@ -1,0 +1,13 @@
+﻿IN 0
+IN 1
+LOAD 0
+MUL 1
+STORE 2
+OUT 2
+X
+
+#&
+
+0
+0
+0

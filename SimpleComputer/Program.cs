@@ -11,7 +11,7 @@ namespace SimpleComputer
         static void Main(string[] args)
         {
             Console.Title = "SimpleComputer";
-            IProcessor processor = new ComplexProcessor();
+            IProcessor processor = new ArithmeticProcessor();
             string path;
 
             if (args.Length == 1)
