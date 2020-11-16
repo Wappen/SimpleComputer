@@ -20,9 +20,11 @@ namespace SimpleComputer
             }
             else if (args.Length == 0)
             {
+                // Retrieve a list of files in working dir and program folder.
                 List<string> files = new List<string>(Directory.GetFiles(@".\", "*.txt"));
                 files.AddRange(Directory.GetFiles(@".\Programs\", "*.txt"));
 
+                // List of file names without extension and print them to console.
                 List<string> fileNames = new List<string>();
                 files.ForEach(f =>
                 {
@@ -31,6 +33,7 @@ namespace SimpleComputer
                     Console.WriteLine(name);
                 });
 
+                // Get program name with autocomplete enabled.
                 ReadLine.AutoCompletionHandler = new ProgramAutoCompletionHandler(fileNames.ToArray());
                 string input = ReadLine.Read("\nProgram path: ");
 

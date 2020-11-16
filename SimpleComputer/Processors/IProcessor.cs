@@ -8,6 +8,7 @@ namespace SimpleComputer.Processors
         int[] Memory { get; set; }
         Instruction[] Program { get; set; }
         int ProgramCounter { get; set; }
+
         void Run();
     }
 }

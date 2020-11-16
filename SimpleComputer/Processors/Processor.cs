@@ -17,19 +17,19 @@ namespace SimpleComputer.Processors
         {
             Init();
 
-            // When not null, the program only halts when encountering an instruction of the same type
+            // When this var is not null, the program only halts when encountering an instruction of the same type
             Type haltInst = null;
             int skip = 0;
 
             bool run;
             do
             {
-                // Skip halting and printing, when skip var is bigger than 1 or haltInst is not same as instruction
+                // Skip printing and input, when skip is bigger than 1 or haltInst is not same as instruction
                 if (skip-- <= 0 && (haltInst == null || haltInst == Program[ProgramCounter].GetType()))
                 {
                     Display();
 
-                    // Parse the input to either skip given number of lines or to set instType
+                    // Parse the input to an instruction type or set skip value
                     string input = Console.ReadLine().ToUpper();
 
                     if (_instTypes.ContainsKey(input))
